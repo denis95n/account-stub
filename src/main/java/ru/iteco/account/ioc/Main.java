@@ -15,10 +15,19 @@ public class Main {
         AccountService bean = applicationContext.getBean(AccountService.class);
 
         PersonalInformationService personalInformationService = applicationContext.getBean(PersonalInformationService.class);
+        System.out.println(personalInformationService.getIntValueInfo());
 
-        PersonalInfo personalInfo = personalInformationService.getPersonalInfo(1);
-        System.out.println(personalInfo.getId());
-        System.out.println(bean);
+        System.out.println(personalInformationService.getLazyProxyInfo());
+        System.out.println(personalInformationService.getLazyInfo());
+
+//        IntValue intValue = applicationContext.getBean(IntValue.class);
+//        IntValue intValue1 = applicationContext.getBean(IntValue.class);
+//
+//        System.out.println(intValue);
+//        System.out.println(intValue1);
+//
+//        System.out.println(intValue1.getInfo());
+//        System.out.println(intValue.getInfo());
     }
 
 }
