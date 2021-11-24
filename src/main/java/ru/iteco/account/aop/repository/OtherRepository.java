@@ -7,9 +7,16 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class OtherRepository {
 
-    public String getInfo() {
+    public String getInfo(User user) {
         log.info("Call OtherRepository.getInfo()");
         return "OTHER_INFO";
+    }
+
+    public void saveInfo(String info) {
+        if (info == null) {
+            throw new RuntimeException("NULL not saved!");
+        }
+        log.info("SAVE INFO: {}", info);
     }
 
 }

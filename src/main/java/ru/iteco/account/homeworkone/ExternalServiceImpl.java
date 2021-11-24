@@ -24,6 +24,7 @@ public class ExternalServiceImpl implements ExternalService {
     }
 
     @CacheResult
+    @PrintResult
     public ExternalInfo getExternalInfo(Integer id) {
         return externalInfoMap.get(id);
     }

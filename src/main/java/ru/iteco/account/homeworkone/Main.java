@@ -15,7 +15,6 @@ public class Main {
         ExternalService exServ = applicationContext.getBean(ExternalService.class);
         exServ.getExternalInfo(1);
 
-
         Flow flow = applicationContext.getBean(Flow.class);
         flow.run(1);
         flow.run(2);
