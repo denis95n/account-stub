@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
-public class UserServiceImpl implements UserService {
+class UserServiceImpl implements UserService {
 
     private final Map<Integer, UserDto> userDtoMap = new ConcurrentHashMap<>();
     private final AtomicInteger sequenceId = new AtomicInteger(1);

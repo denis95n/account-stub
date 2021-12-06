@@ -12,7 +12,7 @@ public class UserRestExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorDto> handleUserNotFoundException(UserNotFoundException exception) {
-        ErrorDto errorDto = new ErrorDto("NOT_FOUND", exception.getIdNotFound(), exception.getMessage());
+        ErrorDto errorDto = new ErrorDto("NOT_FOUND", exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDto);
     }
 

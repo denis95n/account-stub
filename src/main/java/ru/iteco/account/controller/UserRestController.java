@@ -1,13 +1,24 @@
 package ru.iteco.account.controller;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.iteco.account.model.UserDto;
 import ru.iteco.account.service.UserService;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/rest/user")
 public class UserRestController {
@@ -25,7 +36,12 @@ public class UserRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Integer id) {
-        return ResponseEntity.ok(userService.findById(id));
+        UserDto userDto = userService.findById(id);
+        ResponseCookie userId = ResponseCookie.from("userId", userDto.getId().toString()).maxAge(600).build();
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .header(HttpHeaders.SET_COOKIE, userId.toString())
+                .body(userDto);
     }
 
     @PostMapping
