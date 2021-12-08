@@ -1,4 +1,4 @@
-package ru.iteco.account.model;
+package ru.iteco.account.model.exception;
 
 public class BankBookWithCurrencyAlreadyHaveException extends RuntimeException {
     public BankBookWithCurrencyAlreadyHaveException() {

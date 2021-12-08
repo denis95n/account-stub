@@ -3,13 +3,12 @@ package ru.iteco.account.service;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
-import ru.iteco.account.model.BankBookDto;
-import ru.iteco.account.model.BankBookNotFoundException;
-import ru.iteco.account.model.BankBookNumberCannotBeModifiedException;
-import ru.iteco.account.model.BankBookWithCurrencyAlreadyHaveException;
+import ru.iteco.account.model.dto.BankBookDto;
+import ru.iteco.account.model.exception.BankBookNotFoundException;
+import ru.iteco.account.model.exception.BankBookNumberCannotBeModifiedException;
+import ru.iteco.account.model.exception.BankBookWithCurrencyAlreadyHaveException;
 
 import javax.annotation.PostConstruct;
-import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;

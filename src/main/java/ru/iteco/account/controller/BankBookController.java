@@ -6,15 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.iteco.account.model.BankBookDto;
+import ru.iteco.account.model.dto.BankBookDto;
 import ru.iteco.account.service.BankBookService;
 import ru.iteco.account.validation.Created;
 import ru.iteco.account.validation.Update;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.Map;
 

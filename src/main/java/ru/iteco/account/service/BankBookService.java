@@ -1,6 +1,6 @@
 package ru.iteco.account.service;
 
-import ru.iteco.account.model.BankBookDto;
+import ru.iteco.account.model.dto.BankBookDto;
 
 import java.util.List;
 

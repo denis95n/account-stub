@@ -1,6 +1,6 @@
 package ru.iteco.account.service;
 
-import ru.iteco.account.model.UserDto;
+import ru.iteco.account.model.dto.UserDto;
 
 import java.util.List;
 

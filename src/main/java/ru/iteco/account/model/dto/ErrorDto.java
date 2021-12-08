@@ -1,4 +1,4 @@
-package ru.iteco.account.model;
+package ru.iteco.account.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

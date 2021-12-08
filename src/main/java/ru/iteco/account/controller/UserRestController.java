@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.iteco.account.model.UserDto;
+import ru.iteco.account.model.dto.UserDto;
 import ru.iteco.account.service.UserService;
 
 import java.util.List;

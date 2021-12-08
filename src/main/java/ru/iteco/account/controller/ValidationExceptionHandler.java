@@ -6,7 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ru.iteco.account.model.ErrorDto;
+import ru.iteco.account.model.dto.ErrorDto;
 
 import javax.validation.ConstraintViolationException;
 import java.util.stream.Collectors;
