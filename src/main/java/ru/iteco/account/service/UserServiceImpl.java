@@ -1,6 +1,7 @@
 package ru.iteco.account.service;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import ru.iteco.account.model.dto.AddressDto;
 import ru.iteco.account.model.dto.UserDto;
 import ru.iteco.account.model.entity.AddressEntity;
@@ -31,6 +32,7 @@ class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserDto findById(Integer id) {
         return userRepository.findById(id)
                 .map(this::mapToDto)

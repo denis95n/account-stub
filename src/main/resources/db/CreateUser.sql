@@ -19,3 +19,33 @@ create table if not exists ad.users (
     PRIMARY KEY (id),
     FOREIGN KEY (address) REFERENCES ad.address(id)
 );
+
+create schema if not exists dict;
+create sequence if not exists dict.currency_id_seq;
+create table if not exists dict.currency(
+    id integer unique not null default nextval('dict.currency_id_seq'),
+    name varchar not null,
+    PRIMARY KEY (id)
+);
+
+insert into dict.currency (name)
+values ('USD'), ('EUR'), ('RUB'), ('GBP');
+
+create schema if not exists bank;
+create sequence if not exists bank.bank_book_id_seq;
+create table if not exists bank.bank_book (
+    id integer unique not null default nextval('bank.bank_book_id_seq'),
+    user_id integer not null,
+    number varchar not null ,
+    amount numeric not null ,
+    currency integer not null ,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES ad.users(id),
+    FOREIGN KEY (currency) REFERENCES dict.currency(id)
+);
+
+alter table ad.users
+add column bank_book_id integer;
+
+alter table ad.users
+add FOREIGN KEY (bank_book_id) REFERENCES bank.bank_book(user_id);
