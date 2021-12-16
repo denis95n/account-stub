@@ -4,8 +4,10 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,6 +34,14 @@ public class UserEntity {
     @OneToMany
     @JoinColumn(name = "user_id")
     private List<BankBookEntity> bankBooks;
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_groups", schema = "ad",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id")
+    )
+    private Set<GroupEntity> groups = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

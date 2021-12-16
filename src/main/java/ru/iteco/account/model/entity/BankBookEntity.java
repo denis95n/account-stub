@@ -29,8 +29,7 @@ public class BankBookEntity {
     private CurrencyEntity currency;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @JoinTable
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private UserEntity user;
 
 }

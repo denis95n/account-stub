@@ -44,8 +44,17 @@ create table if not exists bank.bank_book (
     FOREIGN KEY (currency) REFERENCES dict.currency(id)
 );
 
-alter table ad.users
-add column bank_book_id integer;
+create sequence if not exists ad.group_id_seq;
+create table if not exists ad.group (
+    id integer unique not null default nextval('ad.group_id_seq'),
+    name varchar not null,
+    PRIMARY KEY (id)
+);
 
-alter table ad.users
-add FOREIGN KEY (bank_book_id) REFERENCES bank.bank_book(user_id);
+create table if not exists ad.users_groups (
+    user_id integer not null,
+    group_id integer not null,
+    PRIMARY KEY (user_id, group_id),
+    FOREIGN KEY (user_id) REFERENCES ad.users(id),
+    FOREIGN KEY (group_id) REFERENCES ad.group(id)
+);
