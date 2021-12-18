@@ -3,8 +3,7 @@ package ru.iteco.account.service.impl;
 import org.springframework.stereotype.Service;
 import ru.iteco.account.annotation.BankBookTransferTransaction;
 import ru.iteco.account.model.dto.BankBookDto;
-import ru.iteco.account.model.dto.BankBookTransferDto;
-import ru.iteco.account.model.dto.UsersTransferDto;
+import ru.iteco.account.model.dto.TransferDto;
 import ru.iteco.account.model.exception.TransactionException;
 import ru.iteco.account.service.BankBookService;
 import ru.iteco.account.service.TransferService;
@@ -25,13 +24,13 @@ public class TransferServiceImpl implements TransferService {
 
     @Override
     @BankBookTransferTransaction
-    public Boolean transferBetweenBankBooks(BankBookTransferDto bankBookTransferDto) {
+    public Boolean transferBetweenBankBooks(TransferDto transferDto) {
 
-        BankBookDto sourceBankBookDto = bankBookService.findById(bankBookTransferDto.getBankBookSourceId());
-        BankBookDto targetBankBookDto = bankBookService.findById(bankBookTransferDto.getBankBookTargetId());
+        BankBookDto sourceBankBookDto = bankBookService.findById(transferDto.getSourceId());
+        BankBookDto targetBankBookDto = bankBookService.findById(transferDto.getTargetId());
 
-        sourceBankBookDto.setAmount(sourceBankBookDto.getAmount().subtract(bankBookTransferDto.getAmount()));
-        targetBankBookDto.setAmount(targetBankBookDto.getAmount().add(bankBookTransferDto.getAmount()));
+        sourceBankBookDto.setAmount(sourceBankBookDto.getAmount().subtract(transferDto.getAmount()));
+        targetBankBookDto.setAmount(targetBankBookDto.getAmount().add(transferDto.getAmount()));
 
         BankBookDto updateSource = bankBookService.update(sourceBankBookDto);
         BankBookDto updateTarget = bankBookService.update(targetBankBookDto);
@@ -40,10 +39,10 @@ public class TransferServiceImpl implements TransferService {
     }
 
     @Override
-    public void transferBetweenBankbooksUsers(UsersTransferDto usersTransferDto) {
+    public void transferBetweenBankbooksUsers(TransferDto transferDto) {
 
-        List<BankBookDto> bankBookTargetList = bankBookService.findByUserId(usersTransferDto.getUserTargetId());
-        List<BankBookDto> bankBookSourceList = bankBookService.findByUserId(usersTransferDto.getUserSourceId());
+        List<BankBookDto> bankBookTargetList = bankBookService.findByUserId(transferDto.getTargetId());
+        List<BankBookDto> bankBookSourceList = bankBookService.findByUserId(transferDto.getSourceId());
 
         StringBuilder message = new StringBuilder();
         Boolean transactionSuccessful = false;
@@ -51,10 +50,10 @@ public class TransferServiceImpl implements TransferService {
         for (BankBookDto bankBookTarget : bankBookTargetList) {
             for (BankBookDto bankBookSource : bankBookSourceList) {
                 try {
-                    transactionSuccessful = transferService.transferBetweenBankBooks(BankBookTransferDto.builder()
-                            .bankBookSourceId(bankBookSource.getId())
-                            .bankBookTargetId(bankBookTarget.getId())
-                            .amount(usersTransferDto.getAmount())
+                    transactionSuccessful = transferService.transferBetweenBankBooks(TransferDto.builder()
+                            .sourceId(bankBookSource.getId())
+                            .targetId(bankBookTarget.getId())
+                            .amount(transferDto.getAmount())
                             .build());
                 } catch (Exception e) {
                     message.append("Ошибка при отправке со счета отправителя[")

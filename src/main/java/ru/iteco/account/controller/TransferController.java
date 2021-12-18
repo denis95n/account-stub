@@ -5,8 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.iteco.account.model.dto.BankBookTransferDto;
-import ru.iteco.account.model.dto.UsersTransferDto;
+import ru.iteco.account.model.dto.TransferDto;
 import ru.iteco.account.service.TransferService;
 
 import javax.validation.Valid;
@@ -23,12 +22,12 @@ public class TransferController {
     }
 
     @PostMapping
-    public void transactBetweenBankBooks (@Valid @RequestBody BankBookTransferDto bankBookTransferDto){
-        transferService.transferBetweenBankBooks(bankBookTransferDto);
+    public void transactBetweenBankBooks (@Valid @RequestBody TransferDto transferDto){
+        transferService.transferBetweenBankBooks(transferDto);
     }
 
     @PostMapping("/users")
-    public void transactBetweenBankBooksUsers (@Valid @RequestBody UsersTransferDto usersTransferDto){
-        transferService.transferBetweenBankbooksUsers(usersTransferDto);
+    public void transactBetweenBankBooksUsers (@Valid @RequestBody TransferDto transferDto){
+        transferService.transferBetweenBankbooksUsers(transferDto);
     }
 }

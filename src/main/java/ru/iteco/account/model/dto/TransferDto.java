@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @Builder
-public class BankBookTransferDto {
+public class TransferDto {
 
     @NotNull
-    Integer bankBookSourceId;
+    Integer sourceId;
 
     @NotNull
-    Integer bankBookTargetId;
+    Integer targetId;
 
     @PositiveOrZero
     BigDecimal amount;

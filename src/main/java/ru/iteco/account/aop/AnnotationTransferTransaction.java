@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import ru.iteco.account.enumeration.Status;
 import ru.iteco.account.mapper.TransactionMapper;
 import ru.iteco.account.model.dto.BankBookDto;
-import ru.iteco.account.model.dto.BankBookTransferDto;
+import ru.iteco.account.model.dto.TransferDto;
 import ru.iteco.account.model.dto.TransactionDto;
 import ru.iteco.account.model.exception.TransactionException;
 import ru.iteco.account.repository.TransactionRepository;
@@ -32,11 +32,11 @@ public class AnnotationTransferTransaction {
         this.bankBookService = bankBookService;
     }
 
-    @Around(value = "annotationTransferTransaction() && bankBookTransferArgument(bankBookTransferDto)", argNames = "joinPoint,bankBookTransferDto")
+    @Around(value = "annotationTransferTransaction() && bankBookTransferArgument(transferDto)", argNames = "joinPoint,transferDto")
     public Object aroundAnnotationTransferTransactionAdvice(ProceedingJoinPoint joinPoint,
-                                                            BankBookTransferDto bankBookTransferDto) throws Throwable {
+                                                            TransferDto transferDto) throws Throwable {
 
-        TransactionDto transactionDto = buildTransactionDto(bankBookTransferDto);
+        TransactionDto transactionDto = buildTransactionDto(transferDto);
 
         transactionRepository.save(transactionMapper.mapToEntity(transactionDto));
 
@@ -51,16 +51,16 @@ public class AnnotationTransferTransaction {
         return proceed;
     }
 
-    private TransactionDto buildTransactionDto(BankBookTransferDto bankBookTransferDto) {
+    private TransactionDto buildTransactionDto(TransferDto transferDto) {
 
         TransactionDto transactionDto = TransactionDto.builder()
                 .initiationDate(LocalDateTime.now())
                 .status(Status.PROCESSING.getId())
                 .build();
 
-        transactionDto.setTargetBankBookId(bankBookTransferDto.getBankBookTargetId());
-        transactionDto.setSourceBankBookId(bankBookTransferDto.getBankBookSourceId());
-        transactionDto.setAmount(bankBookTransferDto.getAmount());
+        transactionDto.setTargetBankBookId(transferDto.getTargetId());
+        transactionDto.setSourceBankBookId(transferDto.getSourceId());
+        transactionDto.setAmount(transferDto.getAmount());
 
 
         return transactionDto;
@@ -95,7 +95,7 @@ public class AnnotationTransferTransaction {
     public void annotationTransferTransaction() {
     }
 
-    @Pointcut("args(bankBookTransferDto)")
-    public void bankBookTransferArgument(BankBookTransferDto bankBookTransferDto) {
+    @Pointcut("args(transferDto)")
+    public void bankBookTransferArgument(TransferDto transferDto) {
     }
 }

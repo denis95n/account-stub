@@ -4,7 +4,7 @@ import ru.iteco.account.model.dto.*;
 
 public interface TransferService {
 
-    Boolean transferBetweenBankBooks(BankBookTransferDto bankBookTransferDto);
+    Boolean transferBetweenBankBooks(TransferDto transferDto);
 
-    void transferBetweenBankbooksUsers(UsersTransferDto usersTransferDto);
+    void transferBetweenBankbooksUsers(TransferDto transferDto);
 }
