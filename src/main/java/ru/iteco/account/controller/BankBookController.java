@@ -59,5 +59,4 @@ public class BankBookController {
     public void deleteBankBookByUserId(@PathVariable Integer userId) {
         bankBookService.deleteByUserId(userId);
     }
-
 }

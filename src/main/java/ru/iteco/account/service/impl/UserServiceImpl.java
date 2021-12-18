@@ -1,4 +1,4 @@
-package ru.iteco.account.service;
+package ru.iteco.account.service.impl;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +9,7 @@ import ru.iteco.account.model.entity.UserEntity;
 import ru.iteco.account.model.exception.UserNotFoundException;
 import ru.iteco.account.repository.AddressRepository;
 import ru.iteco.account.repository.UserRepository;
+import ru.iteco.account.service.UserService;
 
 import java.util.List;
 import java.util.stream.Collectors;

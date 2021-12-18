@@ -15,5 +15,4 @@
             <column name="name">USD</column>
         </insert>
     </changeSet>
-
 </databaseChangeLog>

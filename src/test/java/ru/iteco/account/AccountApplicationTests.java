@@ -12,7 +12,7 @@ import ru.iteco.account.model.entity.GroupEntity;
 import ru.iteco.account.model.entity.UserEntity;
 import ru.iteco.account.repository.GroupRepository;
 import ru.iteco.account.repository.UserRepository;
-import ru.iteco.account.service.AddressService;
+import ru.iteco.account.service.impl.AddressServiceImpl;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +22,7 @@ import java.util.Optional;
 class AccountApplicationTests {
 
 	@Autowired
-	private AddressService addressService;
+	private AddressServiceImpl addressServiceImpl;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -37,7 +37,7 @@ class AccountApplicationTests {
 	@Test
 	void testLoadUserFromAddress() {
 		AddressDto addressDto = AddressDto.builder().country("RUSSIA").city("OMSK").street("LENINA").home("6").build();
-		UserEntity userByAddress = addressService.getUserByAddress(addressDto);
+		UserEntity userByAddress = addressServiceImpl.getUserByAddress(addressDto);
 		log.info(String.valueOf(userByAddress));
 	}
 
