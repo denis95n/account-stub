@@ -66,7 +66,8 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addDefaultValue schemaName="dict" tableName="currency" columnName="id" defaultValueSequenceNext="currency_id_seq"/>
+        <addDefaultValue schemaName="dict" tableName="currency" columnName="id"
+                         defaultValueSequenceNext="currency_id_seq"/>
     </changeSet>
 
     <changeSet id="init-bank-schema" author="iteco">
@@ -97,7 +98,8 @@
                 <constraints nullable="false" foreignKeyName="bank_book_currency_fkey" references="dict.currency(id)"/>
             </column>
         </createTable>
-        <addDefaultValue schemaName="bank" tableName="bank_book" columnName="id" defaultValueSequenceNext="bank_book_id_seq"/>
+        <addDefaultValue schemaName="bank" tableName="bank_book" columnName="id"
+                         defaultValueSequenceNext="bank_book_id_seq"/>
     </changeSet>
 
     <changeSet id="create-ad-group-id-seq" author="iteco">

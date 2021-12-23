@@ -1,4 +1,4 @@
-package ru.iteco.account.service;
+package ru.iteco.account.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,14 +13,10 @@ import ru.iteco.account.model.exception.BankBookNumberCannotBeModifiedException;
 import ru.iteco.account.model.exception.BankBookWithCurrencyAlreadyHaveException;
 import ru.iteco.account.repository.BankBookRepository;
 import ru.iteco.account.repository.CurrencyRepository;
+import ru.iteco.account.service.BankBookService;
 
-import javax.annotation.PostConstruct;
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
